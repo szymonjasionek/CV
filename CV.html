@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            background-image: url('https://www.transparenttextures.com/patterns/diagonal-noise.png');
+            background-repeat: repeat;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            color: blue;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+        }
+        .personal-info {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .personal-info img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .calendar-header {
+            background-color: blue;
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            text-align: center;
+        }
+        .calendar-day {
+            background-color: #f4f4f4;
+            padding: 5%;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+        .current-day {
+            background-color: orange;
+        }
+        @media (max-width: 900px) {
+            .calendar-day {
+                padding: 3%;
+            }
+        }
+        @media (max-width: 600px) {
+            .calendar-day {
+                padding: 2%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="section personal-info">
+            <img src="https://via.placeholder.com/150" alt="Profile Picture">
+            <div>
+                <p>Imię: Szymon</p>
+                <p>Nazwisko: Jasionek</p>
+                <p>Data urodzin: 23 maj 2001</p>
+                <p>Adres: Jakaś tam ulica</p>
+                <p>Numer telefonu: 123456789</p>
+                <p>Adres e-mail: losowyemail@wp.pl</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Edukacja</h2>
+            <p>Studia: Studia w Wyższej Szkole Bankowej w Warszawie na kierunku Informatyka</p>
+            <p>• 2021-obecnie</p>
+        </div>
+
+        <div class="section">
+            <h2>Doświadczenie</h2>
+            <ul>
+                <li>1 praca</li>
+                <li>2 praca</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Umiejętności</h2>
+            <ul>
+                <li>1 umiejętność</li>
+                <li>2 umiejętność</li>
+                <li>3 umiejętność</li>
+                <li>4 umiejętność</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Calendar</h2>
+            <div class="calendar">
+                <div class="calendar-header">Pon</div>
+                <div class="calendar-header">Wt</div>
+                <div class="calendar-header">Śr</div>
+                <div class="calendar-header">Czw</div>
+                <div class="calendar-header">Pt</div>
+                <div class="calendar-header">Sob</div>
+                <div class="calendar-header">Niedz</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function generateCalendar() {
+            const daysOfWeek = ["Pon", "Wt", "Śr", "Czw", "Pt", "Sob", "Niedz"];
+            const calendar = document.querySelector('.calendar');
+
+            daysOfWeek.forEach(day => {
+                const header = document.createElement('div');
+                calendar.appendChild(header);
+            });
+
+            const date = new Date();
+            const currentDay = date.getDate();
+
+            const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+
+            for (let i = 1; i <= daysInMonth; i++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.classList.add('calendar-day');
+                if (i === currentDay) {
+                    dayDiv.classList.add('current-day');
+                }
+                const dayNumberSpan = document.createElement('span');
+                dayNumberSpan.textContent = i;
+                dayDiv.appendChild(dayNumberSpan);
+                calendar.appendChild(dayDiv);
+            }
+        }
+
+        generateCalendar();
+    </script>
+</body>
+</html>
